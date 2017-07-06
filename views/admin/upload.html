@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}文件上傳{% endblock %}
+{% block main %}
+<h2>文件上傳</h2>
+<p>選擇文件路徑並點擊「上傳」按鈕</p>
+  <form id="upload_form" action="/admin/upload/" enctype="multipart/form-data" method="post">
+    <div><label for="id_file">File:</label> <input type="file" name="file" id="file" /></div>
+    <div><input type="submit" value="上傳" /></div>
+  </form>
+<h5>上傳說明</h5>
+<ul>
+<li>文件小於10M</li>
+<li>文件過大時，上傳比較慢，請稍等</li>
+</ul>
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}管理後台{% endblock %}
+{% block main %}
+<link href="/static/form.css" rel="stylesheet" type="text/css" />
+<h2>管理後台 |<a href="/admin/folder/">目錄管理</a>|<a href="/admin/upload/">上傳</a></h2>
+<h3>文件編輯</h3>
+<form action="/admin/edit/{{filelist.key}}" method="post">
+<table class="form">
+	<tr>
+        <td class="name">文件別名</td>
+        <td class="value"><input class="string" name="slug" id="slug" size="20" value="{{filelist.slug}}"></td>
+    </tr>
+    
+	<tr>
+        <td class="name">目錄</td>
+        <td class="value"><select name="path" id="path" title="選擇目錄">
+        	<option value="" {% ifequal folder.path "/" %} selected="selected" {% endifequal%}>/</option>
+			{% for folder in folders %}
+            <option value="{{folder.key}}" {% ifequal folder.path filelist.path %} selected="selected" {% endifequal%}>{{folder.path}}</option>
+            {% endfor %}
+ 	       </select></td>
+    </tr>
+	<tr>
+    	<td></td>
+        <td class="buttons">
+        	<input type="submit" value="Save Changes"> 
+        </td>
+    </tr>
+</table>
+</form>
+
+{% endblock %}
